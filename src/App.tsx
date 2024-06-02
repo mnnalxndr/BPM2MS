@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import InputPane from './InputPane';
+import { InputValues } from './InputValues';
+import { InputType } from './inputType';
+import CalculationsPane from './CalculationsPane';
 
 function App() {
+  const [ inputValue, setInputValue ] = useState(120);
+  const [ inputType , setInputType ] = useState<InputType>(InputType.BPM);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>BPM {'<->'} MS Converter</h2>
+      <InputPane 
+        inputType={inputType}
+        setInputType={setInputType}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
+      <CalculationsPane
+        inputType={inputType}
+        inputValue={inputValue}  
+      />
     </div>
   );
 }
